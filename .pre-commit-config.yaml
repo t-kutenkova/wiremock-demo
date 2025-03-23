@@ -1,0 +1,36 @@
+default_language_version:
+    python: python3.12
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-json
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: check-added-large-files
+        args: ["--maxkb=1500"]
+
+  - repo: local
+    hooks:
+      - id: isort
+        name: isort
+        entry: poetry run isort tests
+        language: system
+        types: [ python ]
+        require_serial: true
+
+      - id: black
+        name: black
+        entry: poetry run black tests
+        language: system
+        types: [ python ]
+        require_serial: true
+
+      - id: flake8
+        name: flake
+        entry: poetry run pflake8 tests
+        language: system
+        types: [ python ]
+        require_serial: true

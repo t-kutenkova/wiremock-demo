@@ -1,0 +1,17 @@
+
+services:
+  wiremock-server:
+    image: wiremock/wiremock:3.10.0
+    pull_policy: always
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - wiremock-net
+
+networks:
+  wiremock-net:
+    ipam:
+      driver: "default"
+      config:
+        - subnet: "172.4.0.0/16"

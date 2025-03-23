@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "wiremock-demo"
+version = "0.1.0"
+description = "Wiremock demo project"
+authors = ["Kutenkova Tatyana <tvkutenkova@cloud.ru>"]
+readme = "README.md"
+package-mode = false
+
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
+
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pytest = "^8.2.0"
+assertpy = "^1.1"
+requests = "^2.25.1"
+jsonschema = "^4.20.0"
+simplejson = "^3.19.2"
+colorama = "^0.4.6"
+pydantic = "2.6.4"
+pytest-cases = "^3.8.6"
+
+[tool.pytest.ini_options]
+addopts = [ "--strict-markers", "--strict-config", "-ra", "--ignore=test_data"]
+norecursedirs = [ "test_data/*" ]
+testpaths = "tests"
+markers = [
+    # Marks are generated dynamically
+]
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.5.0"
+black = "^23.10.0"
+isort = "^5.12.0"
+flake8 = "^7.0.0"
+pyproject-flake8 = "^7.0.0"
+
+[tool.flake8]
+max-line-length = 190
+ignore = ['E402', 'W605']
+exclude = ['.venv', '.git', '__pycache__', '.pytest_cache', 'test.py', './mock_server/*', './data_structures/proto/*']
+count = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
