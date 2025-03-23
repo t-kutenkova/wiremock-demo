@@ -1,0 +1,3072 @@
+{
+	"info": {
+		"_postman_id": "343af68d-ddd3-4865-b98b-de981c914da1",
+		"name": "Pure wiremock",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22790414"
+	},
+	"item": [
+		{
+			"name": "1. Stubbing",
+			"item": [
+				{
+					"name": "[stub] string body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/my-first-string-mapping\"\n  },\n\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"text/plain\"},\n    \"status\": 200,\n    \"body\": \"Your first mapping is awesome!\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] json body",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/my-first-json-mapping\"\n  },\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"application/json\"},\n    \"status\": 200,\n    \"jsonBody\": {\"Your first mapping\": \"is awesome!\"}\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] edit string body",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/my-first-string-mapping\"\n  },\n\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"text/plain\"},\n    \"status\": 200,\n    \"body\": \"Your edited mapping is also awesome!\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings/5b8fdd56-36d2-4bc9-8017-e3d7c29c4f40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings",
+								"5b8fdd56-36d2-4bc9-8017-e3d7c29c4f40"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] delete string body",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/my-first-string-mapping\"\n  },\n\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"text/plain\"},\n    \"status\": 200,\n    \"body\": \"Your second mapping is also awesome!\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings/5b8fdd56-36d2-4bc9-8017-e3d7c29c4f40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings",
+								"5b8fdd56-36d2-4bc9-8017-e3d7c29c4f40"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] string mapping",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "ice-crean",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/my-first-string-mapping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"my-first-string-mapping"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[check] json mapping",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/my-first-json-mapping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"my-first-json-mapping"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] get all mappings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] delete all mappings",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Request matching",
+			"item": [
+				{
+					"name": "[mapping] url with params",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/url-equalty?limit=1\"\n  },\n\n  \"response\": {\n    \"status\": 200,\n    \"body\": \"URL with params matching successfully checked!\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] url with regex",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"urlPattern\": \"/url-equalty/[a-z]*\"\n  },\n\n  \"response\": {\n    \"status\": 200,\n    \"body\": \"URL with regex matching successfully checked!\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] url with params",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/url-equalty?limit=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"url-equalty"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[check] url with regex",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/url-equalty/mytestregex",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"url-equalty",
+								"mytestregex"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] headers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/headers-matching-check\",\n    \"headers\": {\n      \"Content-Type\": {\n        \"equalTo\": \"application/json\"\n      }\n    }\n\n  },\n  \"response\": {\n    \"status\": 200,\n    \"body\": \"Content-Type is application/json\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] headers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"uuid": "b2597c36-41d2-4334-be2b-907ffccbaa89"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/headers-matching-check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"headers-matching-check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] cookies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/cookies-matching-check\",\n    \"cookies\" : {\n      \"my_profile\" : {\n        \"contains\" : \"ivanivanov@example.com\"\n        // \"doesNotContain\" : \"ivanivanov@example.com\"\n      }\n    }\n\n  },\n  \"response\": {\n    \"status\": 200,\n    \"body\": \"Cookies for Ivan Ivanov are present\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] cookies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cookies",
+								"value": "",
+								"type": "text",
+								"uuid": "e0307368-f8a4-412b-97b4-6c2825bd202f"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cookies-matching-check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cookies-matching-check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] query params",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"urlPattern\": \"/query-params-matching-check.*\",\n    \"queryParameters\" : {\"my_param_name\": {\"matches\": \".*my_param_value.*\"}}\n  },\n  \"response\": {\n    \"status\": 200,\n    \"body\": \"Query params were matched\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] query params",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"uuid": "ebba08d6-5749-4f00-826a-7e40964665ba"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/query-params-matching-check?my_param_name=my_param_value",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"query-params-matching-check"
+							],
+							"query": [
+								{
+									"key": "my_param_name",
+									"value": "my_param_value"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"urlPattern\": \"/body-matching-check\",\n    \"bodyPatterns\": [{\"matches\": \".*part2.*\"}]\n  },\n  \"response\": {\n    \"status\": 200,\n    \"body\": \"Body was matched\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"uuid": "52b9c7bd-77df-4937-9323-6e11bac4f402"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "This is body with 2 parts: part1 and part2!",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/body-matching-check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"body-matching-check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] absence",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/absence-check\",\n    \"headers\" : {\n      \"X-Absent\" : {\n        \"absent\" : true\n      }\n    },\n    \"queryParameters\" : {\n      \"search_term\" : {\n        \"absent\" : true\n      }\n    },\n    \"cookies\" : {\n      \"session\" : {\n        \"absent\" : true\n      }\n    }\n  },\n  \"response\": {\n    \"status\": 200,\n    \"body\": \"Absence was checked\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] absence",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"uuid": "0858ca42-24e2-4a4b-a933-cdf74edf7945"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/absence-check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"absence-check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] multipart ANY (не работает в докере!)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/multipart-pattern-check\",\n    \"multipartPatterns\" : [ {\n      \"matchingType\" : \"ANY\",\n      \"headers\" : {\"email\" : {\"contains\": \"@example.com\"}},\n      \"bodyPatterns\" : [ {\"matches\": \".*@example.com.*\"} ]\n    }]\n  },\n  \"response\": {\n    \"status\": 200,\n    \"body\": \"Email is present in headers or body\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check]  multipart ANY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "email",
+								"value": "ivanivanov@example.com",
+								"type": "text",
+								"uuid": "c215f753-daa8-4695-b3cc-fa725c3b588e"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "ivanivanov@example.com",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/multipart-pattern-check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"multipart-pattern-check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] multiple matches",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/multiple-matches-check\",\n     \"bodyPatterns\" : [{\n        \"or\": [\n            {\"equalToJson\" : \"{ \\\"login\\\": \\\"user123\\\" }\"},\n            {\"equalToJson\" : \"{ \\\"email\\\": \\\"user123@mail.ru\\\" }\"}\n        ]\n     }]\n  },\n  \"response\": {\n    \"status\": 200,\n    \"body\": \"Got user login or email\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check]  multiple matches email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "email",
+								"value": "ivanivanov@example.com",
+								"type": "text",
+								"uuid": "295384f9-94b8-4e54-a6f7-df0fffb35ace"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"user123@mail.ru\"}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/multiple-matches-check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"multiple-matches-check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check]  multiple matches login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "email",
+								"value": "ivanivanov@example.com",
+								"type": "text",
+								"uuid": "d5e0e1ae-bbac-4043-b07c-6da3a9677ffb"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"login\": \"user123\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/multiple-matches-check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"multiple-matches-check"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Response templating",
+			"item": [
+				{
+					"name": "[stub] request model",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"POST\",\n    \"url\": \"/response/templating?my_param=my_value\"\n  },\n\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"application/json\"},\n    \"status\": 200,\n    \"transformers\": [\"response-template\"],\n    \"jsonBody\": {\n        \"request.id\": \"{{request.id}}\",\n        \"request.url\": \"{{request.url}}\",\n        \"request.path\": \"{{request.path}}\",\n        \"request.pathSegments.[1]\": \"{{request.pathSegments.[1]}}\",\n        \"request.query.my_param\": \"{{request.query.my_param}}\",\n        \"request.method\": \"{{request.method}}\",\n        \"request.baseUrl\": \"{{request.baseUrl}}\",\n        \"request.headers.my_header\": \"{{request.headers.my_header}}\",\n        \"request.body\": \"{{request.body}}\"\n    \n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] request model",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "my_header",
+								"value": "my_header_value",
+								"type": "text",
+								"uuid": "1c3bba8d-d210-40c7-a99d-9185f67eb2c9"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "my_body",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/response/templating?my_param=my_value",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"response",
+								"templating"
+							],
+							"query": [
+								{
+									"key": "my_param",
+									"value": "my_value"
+								}
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] helpers math & vars",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"POST\",\n    \"url\": \"/response/templating/helpers-conditions\"\n  },\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"application/json\"},\n    \"status\": 200,\n    \"transformers\": [\"response-template\"],\n    \"jsonBody\": {\n        \"create_var_for_body_example\": \"{{val request.body assign='my_var'}}my_var={{my_var}}\",\n        \"sum_with_10_example\": \"{{val (math my_var '+' 10) assign='my_sum'}}my_sum={{my_sum}}\",\n        \"create_var_for_array_example\": \"{{val (array 1 2 3) assign='my_var_for_array'}}my_var_for_array={{my_var_for_array}}\"\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] helpers math & vars",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "my_header",
+								"value": "my_header_value",
+								"uuid": "cc9fbdb3-6bd8-47e0-8cbd-0dcbe46b98cc"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "4",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/response/templating/helpers-conditions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"response",
+								"templating",
+								"helpers-conditions"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] helpers strings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"POST\",\n    \"url\": \"/response/templating/helpers-strings\"\n  },\n\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"application/json\"},\n    \"status\": 200,\n    \"transformers\": [\"response-template\"],\n    \"jsonBody\": {\n        \"capitalize_example\": \"{{capitalize request.body}}\",\n        \"contains_example\": \"{{contains request.body 'body'}}\",\n        \"abbreviate_example\": \"{{abbreviate request.body 10}}\",\n        \"replace_example\": \"{{replace request.body 'body' 'replacement'}}\",\n        \"cut_example\": \"{{cut request.body ' my %s'}}\",\n        \"string_format_example\": \"{{stringFormat request.body 'cool'}}\",\n        \"default_if_empty_example\": \"{{defaultIfEmpty request.body 'this is default response' }}\",\n        \"now_format_example\": \"{{now['format'][tz = timeZone | timeZoneId]}}\"\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] helpers strings",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "my_header",
+								"value": "my_header_value",
+								"uuid": "f7dc9587-5e1a-49cc-9120-c4be6a6f155e"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "this is my %s body",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/response/templating/helpers-strings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"response",
+								"templating",
+								"helpers-strings"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] helpers conditions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"POST\",\n    \"url\": \"/response/templating/helpers-conditions\"\n  },\n\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"application/json\"},\n    \"status\": 200,\n    \"transformers\": [\"response-template\"],\n    \"jsonBody\": {\n        \"if_else_example\": \"{{#if request.body}}Body is NOT empty!{{else}}Body is empty!{{/if}}\",\n        \"contains_example\": \"{{#if}}{{#contains (array 'apple' 'orange' 'banana') request.body}}Item is on the list!{{/contains}}{{/if}}\",\n        \"matches_example\": \"{{#if (matches request.body 'ap.*le')}}Regex was matched!{{/if}}\",\n        \"equal_example\": \"{{eq request.body 'apple' yes='Yes! :)' no='No! :('}}\",\n        \"equal_with_else_example\": \"{{#eq request.body 'apple'}}Body equals 'apple'{{else}}Body does not equal 'apple'{{/eq}}\",\n        \"greater_than_example\": \"{{gt 10 5 yes='10 > 5'}}\"\n        // разобраться, как переводить string в integer/float   \n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] helpers conditions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "my_header",
+								"value": "my_header_value",
+								"uuid": "bb0098ca-afd0-4a0e-9a85-6308adf7daac"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "apple",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/response/templating/helpers-conditions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"response",
+								"templating",
+								"helpers-conditions"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] helpers iterations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/response/templating/iterations/segment4/segment5\"\n  },\n\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"application/json\"},\n    \"status\": 200,\n    \"transformers\": [\"response-template\"],\n    \"jsonBody\": {\n        \"equal_example\": \"{{#each request.pathSegments as |segment|}}segment ({{@index}}): {{segment}}, {{/each}}\"\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] helpers iterations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "my_header",
+								"value": "my_header_value",
+								"uuid": "a5356388-b079-466e-8a8a-fe49bd1a8754"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/response/templating/iterations/segment4/segment5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"response",
+								"templating",
+								"iterations",
+								"segment4",
+								"segment5"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] helpers datetime",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"POST\",\n    \"url\": \"/response/templating/datetime\"\n  },\n\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"application/json\"},\n    \"status\": 200,\n    \"transformers\": [\"response-template\"],\n    \"jsonBody\": {\n        \"now_example\": \"{{now}}\",\n        \"now_with_offset_example\": \"{{now offset='-1 months' format='yyyy-MM-dd'}}\",\n        \"unixtime_example\": \"{{now format='unix'}}\",\n        \"parse_date_and_var_assign_example\": \"{{val (parseDate request.body) assign='my_date'}}My parsed var: {{my_date}}\"\n        // \"my_parsed_date_with_1_day_offset\": \"{{my_date offset='1 days'}}\"\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] helpers datetime",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "my_header",
+								"value": "my_header_value",
+								"uuid": "b9982e78-094f-4e38-a774-566af9b42e98"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "2030-03-02T16:24:47Z",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/response/templating/datetime",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"response",
+								"templating",
+								"datetime"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] helpers json",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"POST\",\n    \"url\": \"/response/templating/json\"\n  },\n\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"application/json\"},\n    \"status\": 200,\n    \"transformers\": [\"response-template\"],\n    \"jsonBody\": {\n        \"apples_number_example\": \"Apples number: {{jsonPath request.body '$.fruits.apple'}}\",\n        \"count_fruits_example\": \"Fruits sum:{{parseJson request.body 'my_body'}}{{val 0 assign='fruits_sum'}}{{#each my_body.fruits as |f|}}{{val (math f '+' fruits_sum) assign='fruits_sum'}}{{/each}} {{fruits_sum}}\"\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] helpers json",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "my_header",
+								"value": "my_header_value",
+								"uuid": "8476adbf-0588-448a-84eb-24f703239e05"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fruits\": {\n        \"apple\": 1,\n        \"banana\": 2,\n        \"orange\": 7\n    },\n    \"vegetables\": {\n        \"carrot\": 10,\n        \"potato\": 20,\n        \"tomato\": 5\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/response/templating/json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"response",
+								"templating",
+								"json"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[stub] helpers random",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/response/templating/random\"\n  },\n\n  \"response\": {\n    \"headers\": {\"Content-Type\": \"application/json\"},\n    \"status\": 200,\n    \"transformers\": [\"response-template\"],\n    \"jsonBody\": {\n        \"str_alphanumeric_10_len_example\": \"{{randomValue length=10 type='ALPHANUMERIC'}}\",\n        \"str_alphabetic_5_len_example\": \"{{randomValue length=5 type='ALPHABETIC'}}\",\n        \"str_hex_8_len_example\": \"0x{{randomValue length=8 type='HEXADECIMAL' uppercase=true}}\",\n        \"str_uuid_example\": \"{{randomValue type='UUID'}}\",\n        \"int_example\": \"{{randomInt lower=0 upper=10}}\",\n        \"decimal_example\": \"{{randomDecimal lower=-100.5 upper=200.3}}\",\n        \"choice_example\": \"{{pickRandom 'apple' 'banana' 'orange' 'peach'}}\",\n        \"multiple_choice_example\": \"{{pickRandom 'apple' 'banana' 'orange' 'peach' count=2}}\"\n\n\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] helpers random",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "my_header",
+								"value": "my_header_value",
+								"uuid": "2cc81502-2417-41a7-996c-eaa68a324253"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/response/templating/random",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"response",
+								"templating",
+								"random"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Logging & Verification",
+			"item": [
+				{
+					"name": "[mapping] cake ice-cream",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"name\": \"3_logging\",\n            \"request\": {\n                \"urlPath\": \"/food-check\",\n                \"method\": \"POST\",\n                \"bodyPatterns\": [{\"matches\": \".*cake|ice-cream.*\"}]\n\n            },\n            \"response\": {\n                \"status\": 200,\n                \"body\": \"Mmmmmmmm!\"\n            }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check success] cake",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "cake",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/food-check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"food-check"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[check success] ice-cream",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "ice-crean",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/food-check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"food-check"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[check unmatched] brokkoli",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/__admin/requests/unmatched/near-misses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"requests",
+								"unmatched",
+								"near-misses"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[check unmatched] unmocked url",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/unmocked-url",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"unmocked-url"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[log] count requests",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/requests/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"requests",
+								"count"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[log] requests",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/requests?unmatched=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"requests"
+							],
+							"query": [
+								{
+									"key": "since",
+									"value": "2025-01-24T00:00:00Z",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "unmatched",
+									"value": "true"
+								}
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[log] requests find ??? не работает",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"post_sku_service_get_sku_200\",\n\t\"request\": {\n\t\t\"urlPath\": \"/SkuService/GetSku\",\n\t\t\"method\": \"POST\",\n        \"bodyPatterns\" : [ {\n          \"matches\": \".*my_id.*\"\n      }\n    ]\n\t},\n\t\"response\": {\n\t\t\"status\": 200,\n\t\t\"body\": \"{\\n    \\\"prices\\\": [\\n        {\\n            \\\"id\\\": \\\"406b5a10-3b83-4e15-9bd6-42fec5fd8530\\\",\\n            \\\"sku_id\\\": \\\"7a0e0492-21e8-4bcc-a851-59bcef4bc3f6\\\",\\n            \\\"tariff_plan_id\\\": \\\"ab34e4dc-4647-4d16-92b1-4e842b8412b4\\\",\\n            \\\"step\\\": 0,\\n            \\\"ceo_min\\\": {\\n                \\\"negative\\\": false,\\n                \\\"mantissa\\\": \\\"Kg==\\\",\\n                \\\"exponent\\\": -2\\n            },\\n            \\\"cpo_min\\\": {\\n                \\\"negative\\\": false,\\n                \\\"mantissa\\\": \\\"Lg==\\\",\\n                \\\"exponent\\\": -2\\n            },\\n            \\\"cco_min\\\": {\\n                \\\"negative\\\": false,\\n                \\\"mantissa\\\": \\\"RQ==\\\",\\n                \\\"exponent\\\": -2\\n            },\\n            \\\"street_price\\\": {\\n                \\\"negative\\\": false,\\n                \\\"mantissa\\\": \\\"Xg==\\\",\\n                \\\"exponent\\\": -2\\n            },\\n            \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"updated_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\",\\n            \\\"updated_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\"\\n        }\\n    ],\\n    \\\"characteristic_values\\\": [\\n        {\\n            \\\"equals\\\": [\\n                {\\n                    \\\"kind\\\": \\\"VALUE_KIND_STRING\\\",\\n                    \\\"string_value\\\": \\\"main\\\"\\n                }\\n            ],\\n            \\\"ranges\\\": [],\\n            \\\"id\\\": \\\"8a847e0a-fc7f-4eb9-8744-7679e69d46eb\\\",\\n            \\\"characteristic_id\\\": \\\"07cd0db4-86ac-4566-8399-b88b7374aa6a\\\",\\n            \\\"sku_id\\\": \\\"7a0e0492-21e8-4bcc-a851-59bcef4bc3f6\\\",\\n            \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"updated_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\",\\n            \\\"updated_by\\\": \\\"fd48c278-d071-4537-99cd-d3a8031671b5\\\"\\n        },\\n        {\\n            \\\"equals\\\": [\\n                {\\n                    \\\"kind\\\": \\\"VALUE_KIND_STRING\\\",\\n                    \\\"string_value\\\": \\\"public\\\"\\n                }\\n            ],\\n            \\\"ranges\\\": [],\\n            \\\"id\\\": \\\"59e15cae-f9d0-4ce6-9255-8f093d8bb1c9\\\",\\n            \\\"characteristic_id\\\": \\\"f82a1510-6c3b-43cb-b69b-53fbe4bd5252\\\",\\n            \\\"sku_id\\\": \\\"7a0e0492-21e8-4bcc-a851-59bcef4bc3f6\\\",\\n            \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"updated_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\",\\n            \\\"updated_by\\\": \\\"fd48c278-d071-4537-99cd-d3a8031671b5\\\"\\n        },\\n        {\\n            \\\"equals\\\": [\\n                {\\n                    \\\"kind\\\": \\\"VALUE_KIND_STRING\\\",\\n                    \\\"string_value\\\": \\\"over_3_0\\\"\\n                }\\n            ],\\n            \\\"ranges\\\": [],\\n            \\\"id\\\": \\\"393c5ce7-47bf-46dc-9912-a8e2d239c7df\\\",\\n            \\\"characteristic_id\\\": \\\"1f341fc3-286f-4844-a85d-1fbe76160cb4\\\",\\n            \\\"sku_id\\\": \\\"7a0e0492-21e8-4bcc-a851-59bcef4bc3f6\\\",\\n            \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"updated_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\",\\n            \\\"updated_by\\\": \\\"fd48c278-d071-4537-99cd-d3a8031671b5\\\"\\n        }\\n    ],\\n    \\\"customer_type_accesses\\\": [\\n        {\\n            \\\"id\\\": \\\"a30b3ec5-c8e7-4f78-aefc-1425a3b7d760\\\",\\n            \\\"name\\\": \\\"Public\\\",\\n            \\\"int_name\\\": \\\"public\\\"\\n        }\\n    ],\\n    \\\"billing_resource_specification_codes\\\": [\\n        \\\"\\\"\\n    ],\\n    \\\"custom_parameters\\\": [],\\n    \\\"id\\\": \\\"7a0e0492-21e8-4bcc-a851-59bcef4bc3f6\\\",\\n    \\\"name\\\": \\\"PAYG_Виртуальный процессор 3,0 ГГц\\\",\\n    \\\"code\\\": \\\"E-VCPVCD0CPU03_0GN-HS0\\\",\\n    \\\"int_name\\\": \\\"vcpu_3_0_payg\\\",\\n    \\\"description\\\": \\\"\\\",\\n    \\\"status\\\": \\\"SKU_STATUS_ACTIVE\\\",\\n    \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n    \\\"updated_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n    \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\",\\n    \\\"product_id\\\": \\\"70b964f4-9cdd-498d-bd31-784aa97c9e24\\\",\\n    \\\"resource_id\\\": \\\"700d01ed-66bf-4dc2-b627-179ea9fa3fc6\\\",\\n    \\\"quantum\\\": \\\"QUANTUM_HOUR\\\",\\n    \\\"billing_external_ref\\\": \\\"6528\\\",\\n    \\\"erp_code\\\": \\\"PE-VCD0CPU0N3_0G0N-HN0MS0\\\",\\n    \\\"owner_specification\\\": \\\"3_0GN\\\",\\n    \\\"charge_type\\\": \\\"CHARGE_TYPE_DYNAMIC\\\",\\n    \\\"product_supplier\\\": \\\"PRODUCT_SUPPLIER_SBERCLOUD\\\",\\n    \\\"launch_type\\\": \\\"LAUNCH_TYPE_COMMERCIAL\\\",\\n    \\\"launch_date\\\": \\\"2023-01-27T09:35:04Z\\\",\\n    \\\"product_manager\\\": {\\n        \\\"id\\\": \\\"75c87c17-9fef-4700-b2b3-6357c83566c4\\\",\\n        \\\"name\\\": \\\"Владимир Касаджик\\\",\\n        \\\"head_of_group_name\\\": \\\"Владимир Свиридов\\\",\\n        \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n        \\\"updated_at\\\": null,\\n        \\\"created_by\\\": \\\"6ec6ff99-22d9-473e-acf2-8f7f6807065b\\\",\\n        \\\"updated_by\\\": \\\"\\\"\\n    },\\n    \\\"name_en\\\": \\\"Virtual processor not lower than 3.0 GHz, PAYG\\\",\\n    \\\"value_added_tax_percent\\\": 20,\\n    \\\"sale_registration_type\\\": \\\"SALE_REGISTRATION_TYPE_ACT_OF_COMPLETED_JOBS\\\",\\n    \\\"nomenclature_type\\\": \\\"NOMENCLATURE_TYPE_SERVICE\\\",\\n    \\\"federal_communication_agency\\\": false,\\n    \\\"framework_agreement\\\": true,\\n    \\\"resource_spec_code\\\": \\\"vmware.vcpu_payg#over_3_0#main#public\\\",\\n    \\\"analytical_accounting_group\\\": {\\n        \\\"id\\\": \\\"6ccf5410-1b71-4123-b212-2d11a0dd8058\\\",\\n        \\\"name\\\": \\\"Прочее\\\",\\n        \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n        \\\"updated_at\\\": null,\\n        \\\"created_by\\\": \\\"\\\",\\n        \\\"updated_by\\\": \\\"\\\"\\n    },\\n    \\\"nomenclature_variant\\\": {\\n        \\\"id\\\": \\\"14808257-de49-4244-8a52-0d82f6edd47f\\\",\\n        \\\"name\\\": \\\"Прочее\\\",\\n        \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n        \\\"updated_at\\\": null,\\n        \\\"created_by\\\": \\\"\\\",\\n        \\\"updated_by\\\": \\\"\\\"\\n    },\\n    \\\"data_sampling_function\\\": \\\"DATA_SAMPLING_FUNCTION_MAX\\\",\\n    \\\"billing_sampling_quantum\\\": \\\"QUANTUM_HOUR\\\",\\n    \\\"catalog_document_group_id\\\": \\\"a57f30b2-7306-49d2-bb20-3498ee7fba74\\\",\\n    \\\"unit\\\": {\\n        \\\"id\\\": \\\"cc8ab50f-8115-49b6-a4ab-fd9f7d7fb3f1\\\",\\n        \\\"name\\\": \\\"шт\\\",\\n        \\\"description\\\": \\\"шт.\\\",\\n        \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n        \\\"updated_at\\\": null,\\n        \\\"created_by\\\": \\\"15c647ee-2dec-4dd3-a4af-70adee428032\\\",\\n        \\\"updated_by\\\": \\\"\\\",\\n        \\\"is_advanced\\\": false,\\n        \\\"billing_external_ref\\\": \\\"9\\\"\\n    },\\n    \\\"discount_mode\\\": \\\"DISCOUNT_MODE_UNSPECIFIED\\\",\\n    \\\"old_billing_external_ref\\\": \\\"6528\\\",\\n    \\\"ts_metric_type\\\": \\\"TIME_SERIES_METRIC_TYPE_GAUGE\\\",\\n    \\\"auto_prolongation\\\": false,\\n    \\\"metric_unit\\\": null,\\n    \\\"billing_validity_period\\\": {\\n        \\\"id\\\": \\\"2dd75b8a-043a-49e9-b254-a87bc26eac77\\\",\\n        \\\"name\\\": \\\"Потребление по факту\\\",\\n        \\\"billing_external_ref\\\": \\\"0\\\",\\n        \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n        \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\"\\n    },\\n    \\\"updated_by\\\": \\\"276e6a01-ab07-41a1-86cb-8cbbe5bafb08\\\",\\n    \\\"stat_mask\\\": {\\n        \\\"id\\\": \\\"bf06d013-bf51-4a59-b145-ea528f116cb6\\\",\\n        \\\"mask\\\": \\\"CPSC_CNT\\\",\\n        \\\"name\\\": \\\"CPSC_CNT Количество ресурса в шт\\\",\\n        \\\"description\\\": \\\"Используется для ресурсов передаваемых в шт (например vCPU, ключиMATCHING_TEST_2 и т.п.)\\\"\\n    }\\n}\",\n\t\t\"headers\": {\n\t\t\t\"Content-Type\": \"application/json\"\n\t\t}\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/requests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"requests"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[log] requests/unmatched",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/__admin/requests/unmatched",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"requests",
+								"unmatched"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[log] /requests/unmatched/near-misses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/__admin/requests/unmatched/near-misses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"requests",
+								"unmatched",
+								"near-misses"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[log] near-misses/request // какие есть попадания по конкретному запросу",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/near-misses/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"near-misses",
+								"request"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[log] near-misses/request-pattern",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// тут мы проверяем на попадание по условию\n{\n    \"url\": \"/food\",\n    \"method\": \"GET\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/near-misses/request-pattern",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"near-misses",
+								"request-pattern"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[system] reset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/reset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"reset"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Recording",
+			"item": [
+				{
+					"name": "[record] start recording",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"targetBaseUrl\": \"http://examples.wiremockapi.cloud\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/recordings/start",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"recordings",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[record] stop recording",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/recordings/stop",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"recordings",
+								"stop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[record] status recording",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"targetBaseUrl\": \"http://examples.wiremockapi.cloud/\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/recordings/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"recordings",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[record] origin recordables",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://examples.wiremockapi.cloud/recordables/123",
+							"protocol": "http",
+							"host": [
+								"examples",
+								"wiremockapi",
+								"cloud"
+							],
+							"path": [
+								"recordables",
+								"123"
+							],
+							"query": [
+								{
+									"key": "owner[name]",
+									"value": "tom",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[record] mocked recordables",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/recordables/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"recordables",
+								"123"
+							],
+							"query": [
+								{
+									"key": "owner[name]",
+									"value": "tom",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Faults",
+			"item": [
+				{
+					"name": "[mapping] fixed delay 5s",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"name\": \"5_faults__fixed_delay\",\n            \"request\": {\n                \"urlPath\": \"/faults/fixed-delay\",\n                \"method\": \"GET\"\n            },\n            \"response\": {\n                \"status\": 200,\n                \"body\": \"Body with 5 sec delay\",\n                \"fixedDelayMilliseconds\": 5000\n            }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] fixed delay 5s",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/faults/fixed-delay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"faults",
+								"fixed-delay"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] uniform random delay 0...5s",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"name\": \"5_faults__uniform_random_delay\",\n            \"request\": {\n                \"urlPath\": \"/faults/uniform-random-delay\",\n                \"method\": \"GET\"\n            },\n            \"response\": {\n                \"status\": 200,\n                \"body\": \"Body with uniform random delay [0..5s]\",\n                \"delayDistribution\": {\n                    \"type\": \"uniform\",\n                    \"lower\": 0,\n                    \"upper\": 5000\n}\n            }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] random delay 0...5s",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/faults/uniform-random-delay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"faults",
+								"uniform-random-delay"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] normal random delay 0...2s",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"name\": \"5_faults__random_normal_delay\",\n            \"request\": {\n                \"urlPath\": \"/faults/normal-random-delay\",\n                \"method\": \"GET\"\n            },\n            \"response\": {\n                \"status\": 200,\n                \"body\": \"Body with normal random delay [0..2s]\",\n                \"delayDistribution\": {\n                     \"type\": \"lognormal\",\n        \t          \"median\": 1000,\n                      \"sigma\": 0.1}\n            }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] normal delay 0...2s",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/faults/normal-random-delay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"faults",
+								"normal-random-delay"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] chunked response",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"name\": \"5_faults__chunked_response\",\n            \"request\": {\n                \"urlPath\": \"/faults/chunked-response\",\n                \"method\": \"GET\"\n            },\n            \"response\": {\n                \"status\": 200,\n                \"body\": \"Chunked response\",\n                \"chunkedDribbleDelay\": {\n                \"numberOfChunks\": 5,\n                \"totalDuration\": 5000\n                }\n            }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] chunked response 5/5s",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/faults/chunked-response",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"faults",
+								"chunked-response"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] error EMPTY_RESPONSE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"name\": \"5_faults__error_empty_response\",\n            \"request\": {\n                \"urlPath\": \"/faults/error-empty-response\",\n                \"method\": \"GET\"\n            },\n            \"response\": {\n                \"fault\": \"EMPTY_RESPONSE\"\n            }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] error EMPTY_RESPONSE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/faults/error-empty-response",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"faults",
+								"error-empty-response"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6. Scenarios",
+			"item": [
+				{
+					"name": "[mapping] GET state empty",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"scenarioName\": \"Shopping list\",\n            \"requiredScenarioState\": \"Started\",\n            \"request\": {\n                \"method\": \"GET\",\n                \"url\": \"/shopping-list\"\n            },\n            \"response\": {\n                \"status\": 200,\n                \"body\": \"[]\"\n            }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] POST state empty",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n        {\n            \"scenarioName\": \"Shopping list\",\n            \"requiredScenarioState\": \"Started\",\n            \"newScenarioState\": \"Milk added\",\n            \"request\": {\n                \"method\": \"POST\",\n                \"url\": \"/shopping-list\",\n                \"bodyPatterns\": [\n                    { \"contains\": \"Milk\" }\n                ]\n            },\n            \"response\": {\n                \"body\": \"Milk added\",\n                \"status\": 201\n            }\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[mapping] GET state one item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n        {\n            \"scenarioName\": \"Shopping list\",\n            \"requiredScenarioState\": \"Milk added\",\n            \"request\": {\n                \"method\": \"GET\",\n                \"url\": \"/shopping-list\"\n            },\n            \"response\": {\n                \"status\": 200,\n                \"body\": \"[\\\"Milk\\\"]\"\n            }\n        }\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/mappings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] GET list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/shopping-list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shopping-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[check] GET add milk",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/shopping-list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shopping-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[scenario] reset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/scenarios/reset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"scenarios",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[scenario] list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/scenarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"scenarios"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7. System",
+			"item": [
+				{
+					"name": "[system] shutdown",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/shutdown",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"shutdown"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[system] reset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/reset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"reset"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				},
+				{
+					"name": "[system] save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/__admin/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"__admin",
+								"save"
+							]
+						},
+						"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "[stub] get mappings",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/__admin/mappings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"__admin",
+						"mappings"
+					]
+				},
+				"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+			},
+			"response": []
+		},
+		{
+			"name": "[stub] delete mappings",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"post_sku_service_get_sku_200\",\n\t\"request\": {\n\t\t\"urlPath\": \"/SkuService/GetSku\",\n\t\t\"method\": \"POST\",\n        \"bodyPatterns\" : [ {\n          \"matches\": \".*my_id.*\"\n      }\n    ]\n\t},\n\t\"response\": {\n\t\t\"status\": 200,\n\t\t\"body\": \"{\\n    \\\"prices\\\": [\\n        {\\n            \\\"id\\\": \\\"406b5a10-3b83-4e15-9bd6-42fec5fd8530\\\",\\n            \\\"sku_id\\\": \\\"7a0e0492-21e8-4bcc-a851-59bcef4bc3f6\\\",\\n            \\\"tariff_plan_id\\\": \\\"ab34e4dc-4647-4d16-92b1-4e842b8412b4\\\",\\n            \\\"step\\\": 0,\\n            \\\"ceo_min\\\": {\\n                \\\"negative\\\": false,\\n                \\\"mantissa\\\": \\\"Kg==\\\",\\n                \\\"exponent\\\": -2\\n            },\\n            \\\"cpo_min\\\": {\\n                \\\"negative\\\": false,\\n                \\\"mantissa\\\": \\\"Lg==\\\",\\n                \\\"exponent\\\": -2\\n            },\\n            \\\"cco_min\\\": {\\n                \\\"negative\\\": false,\\n                \\\"mantissa\\\": \\\"RQ==\\\",\\n                \\\"exponent\\\": -2\\n            },\\n            \\\"street_price\\\": {\\n                \\\"negative\\\": false,\\n                \\\"mantissa\\\": \\\"Xg==\\\",\\n                \\\"exponent\\\": -2\\n            },\\n            \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"updated_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\",\\n            \\\"updated_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\"\\n        }\\n    ],\\n    \\\"characteristic_values\\\": [\\n        {\\n            \\\"equals\\\": [\\n                {\\n                    \\\"kind\\\": \\\"VALUE_KIND_STRING\\\",\\n                    \\\"string_value\\\": \\\"main\\\"\\n                }\\n            ],\\n            \\\"ranges\\\": [],\\n            \\\"id\\\": \\\"8a847e0a-fc7f-4eb9-8744-7679e69d46eb\\\",\\n            \\\"characteristic_id\\\": \\\"07cd0db4-86ac-4566-8399-b88b7374aa6a\\\",\\n            \\\"sku_id\\\": \\\"7a0e0492-21e8-4bcc-a851-59bcef4bc3f6\\\",\\n            \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"updated_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\",\\n            \\\"updated_by\\\": \\\"fd48c278-d071-4537-99cd-d3a8031671b5\\\"\\n        },\\n        {\\n            \\\"equals\\\": [\\n                {\\n                    \\\"kind\\\": \\\"VALUE_KIND_STRING\\\",\\n                    \\\"string_value\\\": \\\"public\\\"\\n                }\\n            ],\\n            \\\"ranges\\\": [],\\n            \\\"id\\\": \\\"59e15cae-f9d0-4ce6-9255-8f093d8bb1c9\\\",\\n            \\\"characteristic_id\\\": \\\"f82a1510-6c3b-43cb-b69b-53fbe4bd5252\\\",\\n            \\\"sku_id\\\": \\\"7a0e0492-21e8-4bcc-a851-59bcef4bc3f6\\\",\\n            \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"updated_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\",\\n            \\\"updated_by\\\": \\\"fd48c278-d071-4537-99cd-d3a8031671b5\\\"\\n        },\\n        {\\n            \\\"equals\\\": [\\n                {\\n                    \\\"kind\\\": \\\"VALUE_KIND_STRING\\\",\\n                    \\\"string_value\\\": \\\"over_3_0\\\"\\n                }\\n            ],\\n            \\\"ranges\\\": [],\\n            \\\"id\\\": \\\"393c5ce7-47bf-46dc-9912-a8e2d239c7df\\\",\\n            \\\"characteristic_id\\\": \\\"1f341fc3-286f-4844-a85d-1fbe76160cb4\\\",\\n            \\\"sku_id\\\": \\\"7a0e0492-21e8-4bcc-a851-59bcef4bc3f6\\\",\\n            \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"updated_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n            \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\",\\n            \\\"updated_by\\\": \\\"fd48c278-d071-4537-99cd-d3a8031671b5\\\"\\n        }\\n    ],\\n    \\\"customer_type_accesses\\\": [\\n        {\\n            \\\"id\\\": \\\"a30b3ec5-c8e7-4f78-aefc-1425a3b7d760\\\",\\n            \\\"name\\\": \\\"Public\\\",\\n            \\\"int_name\\\": \\\"public\\\"\\n        }\\n    ],\\n    \\\"billing_resource_specification_codes\\\": [\\n        \\\"\\\"\\n    ],\\n    \\\"custom_parameters\\\": [],\\n    \\\"id\\\": \\\"7a0e0492-21e8-4bcc-a851-59bcef4bc3f6\\\",\\n    \\\"name\\\": \\\"PAYG_Виртуальный процессор 3,0 ГГц\\\",\\n    \\\"code\\\": \\\"E-VCPVCD0CPU03_0GN-HS0\\\",\\n    \\\"int_name\\\": \\\"vcpu_3_0_payg\\\",\\n    \\\"description\\\": \\\"\\\",\\n    \\\"status\\\": \\\"SKU_STATUS_ACTIVE\\\",\\n    \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n    \\\"updated_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n    \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\",\\n    \\\"product_id\\\": \\\"70b964f4-9cdd-498d-bd31-784aa97c9e24\\\",\\n    \\\"resource_id\\\": \\\"700d01ed-66bf-4dc2-b627-179ea9fa3fc6\\\",\\n    \\\"quantum\\\": \\\"QUANTUM_HOUR\\\",\\n    \\\"billing_external_ref\\\": \\\"6528\\\",\\n    \\\"erp_code\\\": \\\"PE-VCD0CPU0N3_0G0N-HN0MS0\\\",\\n    \\\"owner_specification\\\": \\\"3_0GN\\\",\\n    \\\"charge_type\\\": \\\"CHARGE_TYPE_DYNAMIC\\\",\\n    \\\"product_supplier\\\": \\\"PRODUCT_SUPPLIER_SBERCLOUD\\\",\\n    \\\"launch_type\\\": \\\"LAUNCH_TYPE_COMMERCIAL\\\",\\n    \\\"launch_date\\\": \\\"2023-01-27T09:35:04Z\\\",\\n    \\\"product_manager\\\": {\\n        \\\"id\\\": \\\"75c87c17-9fef-4700-b2b3-6357c83566c4\\\",\\n        \\\"name\\\": \\\"Владимир Касаджик\\\",\\n        \\\"head_of_group_name\\\": \\\"Владимир Свиридов\\\",\\n        \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n        \\\"updated_at\\\": null,\\n        \\\"created_by\\\": \\\"6ec6ff99-22d9-473e-acf2-8f7f6807065b\\\",\\n        \\\"updated_by\\\": \\\"\\\"\\n    },\\n    \\\"name_en\\\": \\\"Virtual processor not lower than 3.0 GHz, PAYG\\\",\\n    \\\"value_added_tax_percent\\\": 20,\\n    \\\"sale_registration_type\\\": \\\"SALE_REGISTRATION_TYPE_ACT_OF_COMPLETED_JOBS\\\",\\n    \\\"nomenclature_type\\\": \\\"NOMENCLATURE_TYPE_SERVICE\\\",\\n    \\\"federal_communication_agency\\\": false,\\n    \\\"framework_agreement\\\": true,\\n    \\\"resource_spec_code\\\": \\\"vmware.vcpu_payg#over_3_0#main#public\\\",\\n    \\\"analytical_accounting_group\\\": {\\n        \\\"id\\\": \\\"6ccf5410-1b71-4123-b212-2d11a0dd8058\\\",\\n        \\\"name\\\": \\\"Прочее\\\",\\n        \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n        \\\"updated_at\\\": null,\\n        \\\"created_by\\\": \\\"\\\",\\n        \\\"updated_by\\\": \\\"\\\"\\n    },\\n    \\\"nomenclature_variant\\\": {\\n        \\\"id\\\": \\\"14808257-de49-4244-8a52-0d82f6edd47f\\\",\\n        \\\"name\\\": \\\"Прочее\\\",\\n        \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n        \\\"updated_at\\\": null,\\n        \\\"created_by\\\": \\\"\\\",\\n        \\\"updated_by\\\": \\\"\\\"\\n    },\\n    \\\"data_sampling_function\\\": \\\"DATA_SAMPLING_FUNCTION_MAX\\\",\\n    \\\"billing_sampling_quantum\\\": \\\"QUANTUM_HOUR\\\",\\n    \\\"catalog_document_group_id\\\": \\\"a57f30b2-7306-49d2-bb20-3498ee7fba74\\\",\\n    \\\"unit\\\": {\\n        \\\"id\\\": \\\"cc8ab50f-8115-49b6-a4ab-fd9f7d7fb3f1\\\",\\n        \\\"name\\\": \\\"шт\\\",\\n        \\\"description\\\": \\\"шт.\\\",\\n        \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n        \\\"updated_at\\\": null,\\n        \\\"created_by\\\": \\\"15c647ee-2dec-4dd3-a4af-70adee428032\\\",\\n        \\\"updated_by\\\": \\\"\\\",\\n        \\\"is_advanced\\\": false,\\n        \\\"billing_external_ref\\\": \\\"9\\\"\\n    },\\n    \\\"discount_mode\\\": \\\"DISCOUNT_MODE_UNSPECIFIED\\\",\\n    \\\"old_billing_external_ref\\\": \\\"6528\\\",\\n    \\\"ts_metric_type\\\": \\\"TIME_SERIES_METRIC_TYPE_GAUGE\\\",\\n    \\\"auto_prolongation\\\": false,\\n    \\\"metric_unit\\\": null,\\n    \\\"billing_validity_period\\\": {\\n        \\\"id\\\": \\\"2dd75b8a-043a-49e9-b254-a87bc26eac77\\\",\\n        \\\"name\\\": \\\"Потребление по факту\\\",\\n        \\\"billing_external_ref\\\": \\\"0\\\",\\n        \\\"created_at\\\": \\\"2023-01-27T09:35:04Z\\\",\\n        \\\"created_by\\\": \\\"d246051e-4363-4d1e-b121-27003e87a073\\\"\\n    },\\n    \\\"updated_by\\\": \\\"276e6a01-ab07-41a1-86cb-8cbbe5bafb08\\\",\\n    \\\"stat_mask\\\": {\\n        \\\"id\\\": \\\"bf06d013-bf51-4a59-b145-ea528f116cb6\\\",\\n        \\\"mask\\\": \\\"CPSC_CNT\\\",\\n        \\\"name\\\": \\\"CPSC_CNT Количество ресурса в шт\\\",\\n        \\\"description\\\": \\\"Используется для ресурсов передаваемых в шт (например vCPU, ключиMATCHING_TEST_2 и т.п.)\\\"\\n    }\\n}\",\n\t\t\"headers\": {\n\t\t\t\"Content-Type\": \"application/json\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/__admin/mappings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"__admin",
+						"mappings"
+					]
+				},
+				"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+			},
+			"response": []
+		},
+		{
+			"name": "[system] reset",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/__admin/reset",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"__admin",
+						"reset"
+					]
+				},
+				"description": "видимо он хранит все маппинги в памяти, т к после остановки все маппинги пропадают"
+			},
+			"response": []
+		}
+	]
+}
